@@ -1,4 +1,18 @@
-{"scripts": 
-  "start": "parcel index.html",
-  "build": "parcel build index.html"
+{
+  "name": "hw-08-js-json",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.16.4",
+    "handlebars": "^4.7.9",
+    "parcel": "^2.16.4",
+    "parcel-transformer-handlebars": "^1.0.0"
+  }
 }

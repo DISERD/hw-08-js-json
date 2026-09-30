@@ -1,4 +1,7 @@
-import template from './template.hbs';
+import Handlebars from 'handlebars';
+import sourceTemplate from 'bundle-text:./template.hbs';
+
+const template = Handlebars.compile(sourceTemplate);
 
 let bookmarkInput = document.getElementById('bookmarkInput');
 let addBookmarkBtn = document.getElementById('addBookmarkBtn');
