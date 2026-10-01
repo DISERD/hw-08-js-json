@@ -4,36 +4,31 @@ const bookmarkList = document.getElementById('bookmarkList');
 
 let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
 
-const drawBookmarks = function() {
+const drawBookmarks = function () {
   bookmarkList.innerHTML = '';
-  
-  for (let i = 0; i < bookmarks.length; i++) {
+
+  bookmarks.forEach((url, index) => {
     const li = document.createElement('li');
-    
+
     const a = document.createElement('a');
-    a.href = bookmarks[i];
-    a.textContent = bookmarks[i];
-    a.target = "_blank";
-    
+    a.href = url;
+    a.textContent = url;
+    a.target = '_blank';
+
     const btn = document.createElement('button');
     btn.className = 'delete';
     btn.textContent = 'X';
-    
-    btn.onclick = function() {
-      bookmarks.splice(i, 1);
-      localStorage.setItem('myBookmarks', JSON.stringify(bookmarks));
-      drawBookmarks();
-    };
+    btn.dataset.id = index;
 
     li.appendChild(a);
     li.appendChild(btn);
     bookmarkList.appendChild(li);
-  }
+  });
 };
 
-const handleAddBookmark = function() {
+const handleAddBookmark = function () {
   const url = bookmarkInput.value.trim();
-  
+
   if (url !== '') {
     bookmarks.push(url);
     localStorage.setItem('myBookmarks', JSON.stringify(bookmarks));
@@ -42,6 +37,18 @@ const handleAddBookmark = function() {
   }
 };
 
+const handleListClick = function (event) {
+  if (event.target.classList.contains('delete')) {
+    const indexToDelete = Number(event.target.dataset.id);
+
+    bookmarks.splice(indexToDelete, 1);
+
+    localStorage.setItem('myBookmarks', JSON.stringify(bookmarks));
+    drawBookmarks();
+  }
+};
+
 addBookmarkBtn.addEventListener('click', handleAddBookmark);
+bookmarkList.addEventListener('click', handleListClick); // Делегування
 
 drawBookmarks();
