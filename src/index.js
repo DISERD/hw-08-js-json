@@ -49,6 +49,6 @@ const handleListClick = function (event) {
 };
 
 addBookmarkBtn.addEventListener('click', handleAddBookmark);
-bookmarkList.addEventListener('click', handleListClick); // Делегування
+bookmarkList.addEventListener('click', handleListClick);
 
 drawBookmarks();
